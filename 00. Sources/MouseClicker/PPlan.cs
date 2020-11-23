@@ -65,7 +65,7 @@ namespace MouseClicker
 
         public PPlan()
         {
-
+            ThreadPool.SetMinThreads(1, 1);
         }
 
         public PPlan(DateTime reserveTime, int posX, int posY, int count, int interval, string message, bool ignoreDay)
@@ -88,7 +88,7 @@ namespace MouseClicker
             else
                 span = dateTime - ReserveTime;
 
-            if (span >= TimeSpan.FromMilliseconds(100) && span < TimeSpan.FromMilliseconds(500))
+            if (span > TimeSpan.FromMilliseconds(-125) && span < TimeSpan.FromMilliseconds(125))
                 return true;
 
             return false;
@@ -96,11 +96,13 @@ namespace MouseClicker
 
         public void Act()
         {
-            Thread actThread = new Thread(DoAction);
-            actThread.Start();
+            ThreadPool.QueueUserWorkItem(DoAction);
+
+            //Thread actThread = new Thread(DoAction);
+            //actThread.Start();
         }
 
-        private void DoAction()
+        private void DoAction(object obj)
         {
             Stopwatch sw = new Stopwatch();
 
