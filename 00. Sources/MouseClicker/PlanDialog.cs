@@ -10,25 +10,41 @@ using System.Windows.Forms;
 
 namespace MouseClicker
 {
-    public partial class AddPlanDialog : Form
+    public partial class PlanDialog : Form
     {
         private int _posX;
         private int _posY;
 
         public PPlan Plan { get; set; }
 
-        public AddPlanDialog()
+        public PlanDialog(PPlan plan = null)
         {
             InitializeComponent();
 
-            InitInstance();
+            InitInstance(plan);
         }
 
-        private void InitInstance()
+        private void InitInstance(PPlan plan = null)
         {
             dtpDay.Value = dtpTime.Value = DateTime.Now;
             txtXPos.Text = txtYPos.Text = "0";
             txtInterval.Text = "1000";
+
+            if (plan == null)
+                return;
+
+            dtpDay.Value = new DateTime(plan.ReserveTime.Year, plan.ReserveTime.Month, plan.ReserveTime.Day, plan.ReserveTime.Hour, plan.ReserveTime.Minute, plan.ReserveTime.Second);
+            dtpTime.Value = new DateTime(plan.ReserveTime.Year, plan.ReserveTime.Month, plan.ReserveTime.Day, plan.ReserveTime.Hour, plan.ReserveTime.Minute, plan.ReserveTime.Second);
+            _posX = plan.PosX;
+            _posY = plan.PosY;
+            txtXPos.Text = _posX.ToString();
+            txtYPos.Text = _posY.ToString();
+            txtInterval.Text = plan.Interval.ToString();
+            txtCount.Text = plan.Count.ToString();
+            chkRepeat.Checked = plan.IgnoreDay;
+            txtMessage.Text = plan.Message;
+
+            btnOK.Text = "수정";
         }
 
         private bool CheckIntegrity()

@@ -10,6 +10,7 @@ using System.Diagnostics;
 
 namespace MouseClicker
 {
+    [Serializable]
     public class PPlan
     {
         public struct COPYDATASTRUCT
@@ -88,7 +89,7 @@ namespace MouseClicker
             else
                 span = dateTime - ReserveTime;
 
-            if (span > TimeSpan.FromMilliseconds(-125) && span < TimeSpan.FromMilliseconds(125))
+            if (span > TimeSpan.FromMilliseconds(-125) && span <= TimeSpan.FromMilliseconds(125))
                 return true;
 
             return false;

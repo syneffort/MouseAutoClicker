@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPlanDialog.cs">
+    <Compile Include="PlanDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPlanDialog.Designer.cs">
-      <DependentUpon>AddPlanDialog.cs</DependentUpon>
+    <Compile Include="PlanDialog.Designer.cs">
+      <DependentUpon>PlanDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -62,10 +62,11 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="PPlan.cs" />
+    <Compile Include="PPlanManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddPlanDialog.resx">
-      <DependentUpon>AddPlanDialog.cs</DependentUpon>
+    <EmbeddedResource Include="PlanDialog.resx">
+      <DependentUpon>PlanDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

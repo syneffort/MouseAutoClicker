@@ -41,14 +41,15 @@
             this.lblNow = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grdPlan = new System.Windows.Forms.DataGridView();
-            this.tmrMain = new System.Windows.Forms.Timer(this.components);
-            this.bndPlan = new System.Windows.Forms.BindingSource(this.components);
             this.reserveTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.posXDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.posYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.intervalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bndPlan = new System.Windows.Forms.BindingSource(this.components);
+            this.tmrMain = new System.Windows.Forms.Timer(this.components);
+            this.btnModify = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -85,6 +86,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Controls.Add(this.btnModify);
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 407);
@@ -111,7 +113,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(79)))), ((int)(((byte)(131)))));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(265, 3);
+            this.btnAdd.Location = new System.Drawing.Point(209, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(50, 23);
             this.btnAdd.TabIndex = 0;
@@ -196,16 +198,6 @@
             this.grdPlan.Size = new System.Drawing.Size(377, 333);
             this.grdPlan.TabIndex = 0;
             // 
-            // tmrMain
-            // 
-            this.tmrMain.Enabled = true;
-            this.tmrMain.Interval = 250;
-            this.tmrMain.Tick += new System.EventHandler(this.tmrMain_Tick);
-            // 
-            // bndPlan
-            // 
-            this.bndPlan.DataSource = typeof(MouseClicker.PPlan);
-            // 
             // reserveTimeDataGridViewTextBoxColumn
             // 
             this.reserveTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -257,6 +249,29 @@
             this.Message.Name = "Message";
             this.Message.ReadOnly = true;
             // 
+            // bndPlan
+            // 
+            this.bndPlan.DataSource = typeof(MouseClicker.PPlan);
+            // 
+            // tmrMain
+            // 
+            this.tmrMain.Enabled = true;
+            this.tmrMain.Interval = 250;
+            this.tmrMain.Tick += new System.EventHandler(this.tmrMain_Tick);
+            // 
+            // btnModify
+            // 
+            this.btnModify.BackColor = System.Drawing.Color.Salmon;
+            this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModify.ForeColor = System.Drawing.Color.White;
+            this.btnModify.Location = new System.Drawing.Point(265, 3);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(50, 23);
+            this.btnModify.TabIndex = 0;
+            this.btnModify.Text = "수정";
+            this.btnModify.UseVisualStyleBackColor = false;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -272,6 +287,7 @@
             this.Name = "MainWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "커서예약";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Resize += new System.EventHandler(this.MainWindow_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -303,6 +319,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn intervalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Message;
+        private System.Windows.Forms.Button btnModify;
     }
 }
 

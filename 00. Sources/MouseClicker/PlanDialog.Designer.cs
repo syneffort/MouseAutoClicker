@@ -1,6 +1,6 @@
 ﻿namespace MouseClicker
 {
-    partial class AddPlanDialog
+    partial class PlanDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPlanDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlanDialog));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkRepeat = new System.Windows.Forms.CheckBox();
@@ -80,7 +79,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnOK);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 263);
@@ -89,25 +87,12 @@
             this.panel3.Size = new System.Drawing.Size(375, 30);
             this.panel3.TabIndex = 2;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(318, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(50, 23);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "삭제";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
             // btnOK
             // 
             this.btnOK.BackColor = System.Drawing.Color.White;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.ForeColor = System.Drawing.Color.Black;
-            this.btnOK.Location = new System.Drawing.Point(262, 3);
+            this.btnOK.Location = new System.Drawing.Point(318, 4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(50, 23);
             this.btnOK.TabIndex = 0;
@@ -335,7 +320,7 @@
             // 
             this.tmrMain.Tick += new System.EventHandler(this.tmrMain_Tick);
             // 
-            // AddPlanDialog
+            // PlanDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -346,7 +331,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "AddPlanDialog";
+            this.Name = "PlanDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "예약 추가";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -366,7 +351,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DateTimePicker dtpTime;
         private System.Windows.Forms.DateTimePicker dtpDay;
         private System.Windows.Forms.Label lblTitle;

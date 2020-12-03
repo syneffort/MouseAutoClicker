@@ -14,7 +14,7 @@ namespace MouseClicker
 {
     public partial class MainWindow : Form
     {
-        private List<PPlan> _planList = new List<PPlan>();
+        private PPlanManager _planManager;
 
         public MainWindow()
         {
@@ -24,18 +24,22 @@ namespace MouseClicker
 
         private void InitInstance()
         {
+            _planManager = PPlanManager.Instance;
+            if (_planManager.LoadPlans())
+                RefreshBinding();
+
             tmrMain.Start();
         }
 
         private void CheckAuth()
         {
-            if (DateTime.Now.Year > 2020)
-            {
-                tmrMain.Stop();
+            //if (DateTime.Now.Year > 2020)
+            //{
+            //    tmrMain.Stop();
 
-                MessageBox.Show("사용 가능 기간이 초과되었습니다. 개발자에게 문의하세요");
-                Process.GetCurrentProcess().Kill();
-            }
+            //    MessageBox.Show("사용 가능 기간이 초과되었습니다. 개발자에게 문의하세요");
+            //    Process.GetCurrentProcess().Kill();
+            //}
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -52,12 +56,12 @@ namespace MouseClicker
         private void RefreshBinding()
         {
             bndPlan.DataSource = null;
-            bndPlan.DataSource = _planList;
+            bndPlan.DataSource = _planManager.Plans;
         }
 
         private void CheckPlans()
         {
-            foreach (PPlan plan in _planList)
+            foreach (PPlan plan in _planManager.Plans)
             {
                 if (plan.IsNeedAction(DateTime.Now))
                     plan.Act();
@@ -78,10 +82,32 @@ namespace MouseClicker
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddPlanDialog Dlg = new AddPlanDialog();
+            PlanDialog Dlg = new PlanDialog();
             if (Dlg.ShowDialog() == DialogResult.OK)
             {
-                _planList.Add(Dlg.Plan);
+                _planManager.Plans.Add(Dlg.Plan);
+                RefreshBinding();
+            }
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (bndPlan.Current == null)
+                return;
+
+            PPlan plan = bndPlan.Current as PPlan;
+            if (plan == null)
+                return;
+
+            PPlan originPlan = _planManager.Plans.Find(x => x.ReserveTime == plan.ReserveTime && x.PosX == plan.PosX && x.PosY == plan.PosY);
+            if (originPlan == null)
+                return;
+
+            int index = _planManager.Plans.IndexOf(originPlan);
+            PlanDialog Dlg = new PlanDialog(plan);
+            if (Dlg.ShowDialog() == DialogResult.OK)
+            {
+                _planManager.Plans[index] = Dlg.Plan;
                 RefreshBinding();
             }
         }
@@ -91,11 +117,11 @@ namespace MouseClicker
             if (bndPlan.Current == null)
                 return;
 
-            PPlan objItem = bndPlan.Current as PPlan;
-            if (objItem == null)
+            PPlan plan = bndPlan.Current as PPlan;
+            if (plan == null)
                 return;
 
-            _planList.Remove(objItem);
+            _planManager.Plans.Remove(plan);
             RefreshBinding();
         }
 
@@ -105,6 +131,11 @@ namespace MouseClicker
 
             lblNow.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             CheckPlans();
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _planManager.SavePlans();
         }
     }
 }
